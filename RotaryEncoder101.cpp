@@ -11,7 +11,6 @@
 #include "RotaryEncoder101.h"
 
 uint8_t const maxInterrupts = 6;
-encoderPos_t const encoderPos_min = 0L;
 encoderPos_t const encoderPos_max = 99999999L;
 
 class Interrupt {
@@ -166,8 +165,8 @@ RotaryEncoderInterruptA::isr(void)
 		if (aInDetent && bInDetent && owner->expectRisingEdgeOnPinA) { //check that we have both pins at detent (HIGH) and that we are expecting detent on this pin's rising edge
 			encoderPos_t const delta = owner->delta(owner->increment);
 			encoderPos_t const pos = owner->encoderPos;
-			if (pos < encoderPos_min + delta) {
-				owner->encoderPos = encoderPos_min;
+			if (pos < -encoderPos_max + delta) {
+				owner->encoderPos = -encoderPos_max;
 			} else {
 				owner->encoderPos = pos - delta;
 			}
