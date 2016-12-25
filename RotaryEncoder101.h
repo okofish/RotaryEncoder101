@@ -15,7 +15,7 @@ class RotaryEncoder
 
   public:
 	  // constructor and begin function  
-	RotaryEncoder(uint8_t const pinA_, uint8_t const pinB_, uint8_t const pinP_, bool const lineair_ = true);
+	RotaryEncoder(uint8_t const pinA_, uint8_t const pinB_, uint8_t const pinP_, bool const linear_ = true);
 	void begin(void);
 
 	  // return the current state
@@ -28,7 +28,7 @@ class RotaryEncoder
 	uint8_t const pinP;
 	uint8_t const pinA;
 	uint8_t const pinB;
-	bool const lineair;
+	bool const linear;
 	
 	  // instantiated child classes
 	RotaryEncoderInterruptA * InterruptPtrA;
@@ -49,5 +49,5 @@ class RotaryEncoder
 	struct {
 		uint64_t lastTime;
 		encoderPosDir_t direction;
-	} nonLineair;
+	} nonLinear;
 };

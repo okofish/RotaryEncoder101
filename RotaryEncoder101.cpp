@@ -133,26 +133,26 @@ RotaryEncoderInterruptP::RotaryEncoderInterruptP(uint8_t const pinNr_, RotaryEnc
 encoderPos_t
 RotaryEncoder::delta(encoderPosDir_t const requestedDirection)
 {
-	if (lineair) {
+	if (linear) {
 		return 1;
 	}
 
 	uint64_t const now = millis();
-	uint64_t diff = now - nonLineair.lastTime;
+	uint64_t diff = now - nonLinear.lastTime;
 
     // ignore spurious direction changes when turning very quickly
 	// (probably caused by missed interrupts)
-	if (requestedDirection != nonLineair.direction && diff < 100) {
+	if (requestedDirection != nonLinear.direction && diff < 100) {
 		return 0;
 	}
-	nonLineair.direction = requestedDirection;
+	nonLinear.direction = requestedDirection;
 
 	encoderPos_t scale = 1;
 	while (diff < 200 && scale < encoderPos_max / 10) {
 		scale *= 7;
 		diff <<= 1;
 	}
-	nonLineair.lastTime = now;
+	nonLinear.lastTime = now;
 	return scale;
 }
 
@@ -219,8 +219,8 @@ RotaryEncoderInterruptP::isr()
 RotaryEncoder::RotaryEncoder(uint8_t const pinA_,
 							 uint8_t const pinB_,
 							 uint8_t const pinP_,
-							 bool const lineair_)
-	: pinP(pinP_), pinA(pinA_), pinB(pinB_), lineair(lineair_)
+							 bool const linear_)
+	: pinP(pinP_), pinA(pinA_), pinB(pinB_), linear(linear_)
 {
 	expectRisingEdgeOnPinA = true;
 	expectRisingEdgeOnPinB = true;
