@@ -49,7 +49,7 @@ void loop()
 		if ((last->pos != current.pos)) {
 			if (Serial.availableForWrite() > 60) {
 				Serial.print(ii); Serial.print(" ");
-				Serial.println((uint32_t)current.pos);
+				Serial.println((int32_t)current.pos);
 			}
 			last->pos = current.pos;
 		}
