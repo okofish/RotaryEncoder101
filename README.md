@@ -3,7 +3,7 @@
 
 This library supports rotary encoders connected to the Arduino/Genuino 101.  It should work for other microcontrollers for as long as they can generate the necessary interrupts.
 
-*Modified from [cvonk/arduino-rotary_encoder](/cvonk/arduino-rotary_encoder) to make encoder position a signed int, so values are registered in both directions from zero.*
+*Modified from [cvonk/arduino-rotary_encoder](https://github.com/cvonk/arduino-rotary_encoder) to make encoder position a signed int, so values are registered in both directions from zero.*
 
 Features:
 
